@@ -79,7 +79,7 @@ cdb.delete('test_suite_db', '3853a22cbc4520c65f81c86897060c60', '3-9de3ebabb6ea9
 
 ## Contributing
 
-Bug reports are welcome on GitHub at https://github.com/[USERNAME]/danarchy_couchdb.
+Bug reports are welcome on GitHub at https://github.com/danarchy85/danarchy_couchdb.
 
 ## License
 
