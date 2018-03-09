@@ -1,5 +1,5 @@
-require_relative 'danarchy_couchdb/version'
-require_relative 'danarchy_couchdb/configuration'
+require 'danarchy_couchdb/version'
+require 'danarchy_couchdb/config_manager'
 require 'json'
 require 'net/http'
 

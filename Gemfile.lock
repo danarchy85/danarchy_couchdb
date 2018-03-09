@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    danarchy_couchdb (0.1.0)
+    danarchy_couchdb (0.1.2)
 
 GEM
   remote: https://rubygems.org/
