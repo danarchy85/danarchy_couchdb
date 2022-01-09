@@ -55,9 +55,9 @@ test_suite_db = cdb.get('test_suite_db', '3853a22cbc4520c65f81c86897060c60')
 => {:_id=>"3853a22cbc4520c65f81c86897060c60", :_rev=>"1-3975759ccff3842adf690a5c10caee42", :a=>2}
 
 # Add a new key=>value to the document:
-test_suite_db[:taxation] = 'is extortion'
+test_suite_db[:key] = 'value'
 p test_suite_db
-=> {:_id=>"3853a22cbc4520c65f81c86897060c60", :_rev=>"1-3975759ccff3842adf690a5c10caee42", :a=>2, :taxation=>"is extortion"}
+=> {:_id=>"3853a22cbc4520c65f81c86897060c60", :_rev=>"1-3975759ccff3842adf690a5c10caee42", :a=>2, :key=>"value"}
 
 # Update the document within CouchDB:
 cdb.put('test_suite_db', '3853a22cbc4520c65f81c86897060c60', test_suite_db)
@@ -65,11 +65,11 @@ cdb.put('test_suite_db', '3853a22cbc4520c65f81c86897060c60', test_suite_db)
 
 # We can verify the update with another cdb.get to update the hash to the latest document revision:
 test_suite_db = cdb.get('test_suite_db', '3853a22cbc4520c65f81c86897060c60')
-=> {:_id=>"3853a22cbc4520c65f81c86897060c60", :_rev=>"2-743ac80b9a990d2644bc92bafb452fe5", :a=>2, :taxation=>"is extortion"}
+=> {:_id=>"3853a22cbc4520c65f81c86897060c60", :_rev=>"2-743ac80b9a990d2644bc92bafb452fe5", :a=>2, :key=>"value"}
 
 # cdb.get can also take an optional revision argument:
 test_suite_db = cdb.get('test_suite_db', '3853a22cbc4520c65f81c86897060c60', '3-9de3ebabb6ea97fb4015cb698d228aec')
-=> {:_id=>"3853a22cbc4520c65f81c86897060c60", :_rev=>"3-9de3ebabb6ea97fb4015cb698d228aec", :a=>2, :taxation=>"is extortion"}
+=> {:_id=>"3853a22cbc4520c65f81c86897060c60", :_rev=>"3-9de3ebabb6ea97fb4015cb698d228aec", :a=>2, :key=>"value"}
 
 # Delete a document with cdb.delete with a required revision:
 cdb.delete('test_suite_db', '3853a22cbc4520c65f81c86897060c60', '3-9de3ebabb6ea97fb4015cb698d228aec')

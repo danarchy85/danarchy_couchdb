@@ -20,14 +20,14 @@ module DanarchyCouchDB
       uri  = "#{@uri}/#{database}"
       uri += "/#{document}"        if document
       uri += "/?rev=#{revision}"   if revision
+      uri = URI(uri)
 
-      uri = URI.parse(URI.encode(uri))
-      JSON.parse(request(Net::HTTP::Get.new(uri)), symbolize_names: true)
+      response = Net::HTTP::Get.new(uri)
+      JSON.parse(request(response), symbolize_names: true)
     end
 
     def get_attachment(database, document, attachment)
-      uri  = "#{@uri}/#{database}/#{document}/#{attachment}"
-      uri = URI.parse(URI.encode(uri))
+      uri = URI("#{@uri}/#{database}/#{document}/#{attachment}")
       request(Net::HTTP::Get.new(uri))
     end
 
@@ -38,8 +38,8 @@ module DanarchyCouchDB
       
       uri  = "#{@uri}/#{database}"
       uri += "/#{document}" if document
+      uri  = URI(uri)
 
-      uri = URI.parse(URI.encode("#{@uri}/#{database}/#{document}"))
       req = Net::HTTP::Put.new(uri)
       req["content-type"] = "application/json"
       req.body = data.to_json if data
@@ -53,9 +53,8 @@ module DanarchyCouchDB
       attachment = args.shift
       data       = args.shift
       type       = args.shift
-      
-      uri  = "#{@uri}/#{database}/#{document}/#{attachment}?rev=#{revision}"
-      uri = URI.parse(URI.encode(uri))
+
+      uri = URI("#{@uri}/#{database}/#{document}/#{attachment}?rev=#{revision}")
       req = Net::HTTP::Put.new(uri)
       req["content-type"] = "#{type}"
       req.body = data if data
@@ -71,7 +70,7 @@ module DanarchyCouchDB
       uri += "/#{document}"      if document
       uri += "/?rev=#{revision}" if revision
 
-      uri = URI.parse(URI.encode(uri))
+      uri = URI(uri)
       JSON.parse(request(Net::HTTP::Delete.new(uri)), symbolize_names: true)
     end
 
@@ -81,8 +80,7 @@ module DanarchyCouchDB
       revision   = args.shift
       attachment = args.shift
       
-      uri  = "#{@uri}/#{database}/#{document}/#{attachment}?rev=#{revision}"
-      uri = URI.parse(URI.encode(uri))
+      uri = URI("#{@uri}/#{database}/#{document}/#{attachment}?rev=#{revision}")
       JSON.parse(request(Net::HTTP::Delete.new(uri)), symbolize_names: true)
     end
 
